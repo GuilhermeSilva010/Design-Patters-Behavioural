@@ -1,22 +1,19 @@
 package br.com.alura.loja.orcamento;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 import br.com.alura.loja.situacao.EmAnalise;
-import br.com.alura.loja.situacao.Finalizado;
 import br.com.alura.loja.situacao.SituacaoOrcamento;
 
-public class Orcamento implements Orcavel{
+public class Orcamento {
 
 	private BigDecimal valor;
-	private List<Orcavel> itens;
+	private int quantidadeItens;
 	private SituacaoOrcamento situacao;
 
-	public Orcamento() {
-		this.valor = BigDecimal.ZERO;
-		this.itens = new ArrayList<>();
+	public Orcamento(BigDecimal valor,int quantidadeItens) {
+		this.valor = valor;
+		this.quantidadeItens = quantidadeItens;
 		this.situacao = new EmAnalise();
 		
 	}
@@ -39,16 +36,11 @@ public class Orcamento implements Orcavel{
 	}
 
 	public BigDecimal getValor() {
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			new RuntimeException(e);
-		}
 		return valor;
 	}
 	
 	public int getQuantidadeItens() {
-		return itens.size();
+		return quantidadeItens;
 	}
 
 	public SituacaoOrcamento getSituacao() {
@@ -57,15 +49,6 @@ public class Orcamento implements Orcavel{
 
 	public void setSituacao(SituacaoOrcamento situacao) {
 		this.situacao = situacao;
-	}
-
-	public boolean isFinalizado() {
-		return situacao instanceof Finalizado;
-	}
-	
-	public void adicionarItem(Orcavel item) {
-		this.valor = valor.add(item.getValor());
-		this.itens.add(item);
 	}
 	
 	

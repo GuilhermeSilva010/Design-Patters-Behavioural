@@ -3,7 +3,6 @@ package br.com.alura.loja.pedido;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import br.com.alura.loja.orcamento.ItemOrcamento;
 import br.com.alura.loja.orcamento.Orcamento;
 
 public class GeraPedido {
@@ -44,10 +43,9 @@ public class GeraPedido {
 
 
 	public void executa() {
-				
-		Orcamento orcamento = new Orcamento();
-		orcamento.adicionarItem(new ItemOrcamento(this.valorOrcamento));		
-
+		
+		Orcamento orcamento = new Orcamento(this.valorOrcamento,this.quantidadeItens);
+		
 		Pedido pedido = new Pedido(cliente, LocalDateTime.now(), orcamento);
 		
 		System.out.println("Salvar pedido no banco de dados");
